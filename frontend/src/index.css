@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    min-height: 100vh;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    background:
+      radial-gradient(ellipse 80% 50% at 10% -10%, rgba(56, 189, 248, 0.18), transparent),
+      radial-gradient(ellipse 60% 40% at 90% 0%, rgba(139, 92, 246, 0.22), transparent),
+      radial-gradient(ellipse 70% 50% at 50% 110%, rgba(14, 165, 233, 0.14), transparent),
+      hsl(var(--b1));
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply backdrop-blur-2xl border shadow-xl rounded-2xl;
+    background-color: hsl(var(--b2) / 0.4);
+    border-color: rgb(255 255 255 / 0.1);
+  }
+
+  .glass-panel-strong {
+    @apply backdrop-blur-2xl border shadow-2xl rounded-2xl;
+    background-color: hsl(var(--b2) / 0.6);
+    border-color: rgb(255 255 255 / 0.1);
+  }
+
+  .glass-sidebar {
+    @apply backdrop-blur-3xl border shadow-[0_8px_32px_rgba(0,0,0,0.35)] rounded-2xl;
+    background-color: hsl(var(--b2) / 0.35);
+    border-color: rgb(255 255 255 / 0.08);
+  }
+
+  .glass-card {
+    @apply glass-panel transition-all duration-300;
+  }
+
+  .glass-card:hover {
+    @apply -translate-y-0.5;
+    border-color: hsl(var(--p) / 0.3);
+    box-shadow: 0 12px 40px rgba(56, 189, 248, 0.12);
+  }
+
+  .ambient-glow {
+    box-shadow:
+      0 0 0 1px hsl(var(--p) / 0.08),
+      0 8px 32px rgba(0, 0, 0, 0.35),
+      0 0 60px hsl(var(--p) / 0.06);
+  }
+
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200;
+  }
+
+  .nav-item-active {
+    @apply text-primary border;
+    background-color: hsl(var(--p) / 0.15);
+    border-color: hsl(var(--p) / 0.25);
+    box-shadow: 0 0 20px hsl(var(--p) / 0.15);
+  }
+
+  .nav-item-inactive {
+    @apply border border-transparent;
+    color: hsl(var(--bc) / 0.7);
+  }
+
+  .nav-item-inactive:hover {
+    background-color: hsl(var(--b1) / 0.4);
+    color: hsl(var(--bc));
+  }
+
+  .page-header {
+    @apply text-2xl sm:text-3xl font-semibold tracking-tight;
+  }
+
+  .page-subtitle {
+    @apply text-sm mt-1;
+    color: hsl(var(--bc) / 0.6);
+  }
+
+  .ai-chip {
+    @apply btn btn-xs btn-ghost rounded-full border transition-all;
+    border-color: hsl(var(--p) / 0.2);
+    background-color: hsl(var(--p) / 0.05);
+  }
+
+  .ai-chip:hover {
+    background-color: hsl(var(--p) / 0.15);
+    border-color: hsl(var(--p) / 0.4);
+  }
+
+  .ai-result-card {
+    @apply mt-2 p-3 rounded-xl border text-sm;
+    background: linear-gradient(to bottom right, hsl(var(--p) / 0.1), hsl(var(--s) / 0.1));
+    border-color: hsl(var(--p) / 0.2);
+    animation: fade-in 0.3s ease-out;
+  }
+
+  .stat-pill {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border;
+    background-color: hsl(var(--b1) / 0.5);
+    border-color: hsl(var(--b3) / 0.4);
+  }
+
+  .workspace-main {
+    @apply flex-1 min-h-0 overflow-y-auto p-4 sm:p-6 lg:p-8;
+  }
+}
+
+/* Stream Chat premium overrides */
+.str-chat__channel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  height: 100%;
+}
+
+.str-chat__container {
+  max-width: 1100px;
+  width: 100%;
+  height: calc(100vh - 8rem) !important;
+  margin: 0 auto !important;
+  border-radius: 20px;
+  border: 1px solid hsl(var(--bc) / 0.08);
+  box-shadow:
+    0 24px 60px rgba(4, 8, 20, 0.45),
+    0 0 0 1px hsl(var(--p) / 0.05);
+  overflow: hidden;
+  background: hsl(var(--b2) / 0.85);
+  backdrop-filter: blur(16px);
+}
+
+.str-chat__list {
+  background-color: hsl(var(--b1) / 0.6);
+  padding: 16px;
+}
+
+.str-chat__list-notifications {
+  display: none;
+}
+
+.str-chat__message-input {
+  border-top: 1px solid hsl(var(--bc) / 0.08);
+  background-color: hsl(var(--b2) / 0.9);
+}
+
+.str-chat__message-simple__actions__action--reactions,
+.str-chat__message-simple__actions__action--options {
+  color: hsl(var(--bc));
+}
+
+.str-chat__message-bubble {
+  border-radius: 16px;
+}
+
+.str-chat__message--me .str-chat__message-bubble {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: #fff;
+}
+
+.str-chat__message-data {
+  opacity: 0.75;
+}
+
+.str-chat__channel-header {
+  background: hsl(var(--b2) / 0.9);
+  border-bottom: 1px solid hsl(var(--bc) / 0.08);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: fade-in 0.3s ease-out;
+}
